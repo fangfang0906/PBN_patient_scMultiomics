@@ -20,8 +20,6 @@ set.seed(1234)
 
 # load data ####
 seu <- readRDS("data/seu.rds")
-DimPlot(seu, group.by = "cell_type", reduction = 'umap',
-        label = TRUE, label.size = 3)
 DimPlot(seu, group.by = 'seurat_clusters',label=T,repel = T,raster=FALSE)
 seu$Phase <- factor(seu$Phase,levels=c("G1","S","G2M"))
 DimPlot(seu, group.by = 'Phase',cols = c("grey", "orange", "red"))+
@@ -29,47 +27,6 @@ DimPlot(seu, group.by = 'Phase',cols = c("grey", "orange", "red"))+
 DimPlot(seu, group.by = 'patient',label=F,repel = T)
 DimPlot(seu, group.by = 'sample',label=F,repel = T,reduction='umap')
 DimPlot(seu, group.by = 'PBN_sensitivity',cols=c("chocolate2","peachpuff4"))
-```
-
-
-```{r}
-# Figure S1 ####
-p1 <- DimPlot(seu, group.by = "predicted.celltype.l2", reduction = 'ref.umap',
-        label = TRUE, label.size = 3,repel = T) + NoLegend()+
-  labs(title='Project our dataset to Hao et al., 2021')
-p2 <- DimPlot(ref, group.by = "celltype.l2", reduction = 'wnn.umap',
-        label = TRUE, label.size = 3,repel = T) + NoLegend()+
-  labs(title='Reference dataset from Hao et al., 2021')
-p2/p1
-FeaturePlot(seu, c("CCND1","CD79A","MS4A1","IGHM"),ncol=4)
-```
-
-```{r}
-# Corr plot ####
-library(corrplot)
-library(dplyr)
-rna <- seu@assays$SCT@scale.data
-meta <- seu@meta.data
-asplit <- split(rownames(meta), meta$predicted.celltype.l2)
-aggr <- do.call(cbind, lapply(names(asplit), function(x) {
-  rowMeans(rna[,asplit[[x]]])
-}))
-colnames(aggr) <- names(asplit)
-# reference
-rna_ref <- ref@assays$SCT@scale.data
-meta_ref <- ref@meta.data
-meta_ref <- meta_ref[!(meta_ref$celltype.l2 %in% 'Doublet'),]
-asplit_ref <- split(rownames(meta_ref), meta_ref$celltype.l2)
-names(asplit_ref) <- paste0("ref_",names(asplit_ref))
-aggr_ref <- do.call(cbind, lapply(names(asplit_ref), function(x) {
-  rowMeans(rna_ref[,asplit_ref[[x]]])
-}))
-colnames(aggr_ref) <- names(asplit_ref)
-ok <- intersect(rownames(aggr),rownames(aggr_ref))
-merged <- cbind(aggr[ok,],aggr_ref[ok,])
-cor <- cor(merged)
-library(corrplot)
-corrplot(cor[c(1:30),c(31:60)], tl.col = "black")
 ```
 
 ```{r}
@@ -145,7 +102,6 @@ DoHeatmap(tmp, features = top10$gene) + NoLegend()
 # Figure 1F ####
 library(corrplot)
 library(dplyr)
-b_seu <- readRDS("data/b_seu.rds")
 pca <- t(b_seu@reductions$pca@cell.embeddings)
 asplit <- split(colnames(b_seu), b_seu$sample)
 aggr <- do.call(cbind, lapply(names(asplit), function(x) {
