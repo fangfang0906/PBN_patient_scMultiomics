@@ -2,7 +2,7 @@
 **Pirtobrutinib (PBN)**, a non-covalent BTK inhibitor, is [approved by FDA](https://www.fda.gov/drugs/resources-information-approved-drugs/fda-grants-accelerated-approval-pirtobrutinib-relapsed-or-refractory-mantle-cell-lymphoma) for relapsed/refractory **mantle cell lymphoma (MCL)**; however, resistance has been observed.
 In this study, we performed **single-cell multiome sequencing (scRNAseq, scATAC-seq, and scDNA-seq)** on longitudinal MCL patient samples to dissect the molecular dynamics driving PBN resistance.
 <p align="center">
-<img src="Workflow.PNG">
+<img src="workflow.png">
 </p>
 
 ## Reproducibility
