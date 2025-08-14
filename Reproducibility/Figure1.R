@@ -1,11 +1,3 @@
----
-title: "Figure 1"
-author: "Fangfang Yan"
-date: "`r Sys.Date()`"
-output: html_document
----
-
-```{r}
 # Figure 1B ####
 setwd("/Users/fyan1/Downloads/Projects/Yang_PBN_patient_scRNAseq/")
 library(Seurat)
@@ -27,9 +19,7 @@ DimPlot(seu, group.by = 'Phase',cols = c("grey", "orange", "red"))+
 DimPlot(seu, group.by = 'patient',label=F,repel = T)
 DimPlot(seu, group.by = 'sample',label=F,repel = T,reduction='umap')
 DimPlot(seu, group.by = 'PBN_sensitivity',cols=c("chocolate2","peachpuff4"))
-```
 
-```{r}
 # Figure1C, Barplot showing cell type props ####
 library(dplyr)
 meta <- seu@meta.data
@@ -62,9 +52,7 @@ ggplot(df, aes(x = factor(sample, levels = lvls), y = n, fill = cell_type)) +
   scale_fill_manual(values = colors) +
   theme_bw() +
   coord_flip()
-```
 
-```{r}
 # Figure 1D, Dot plot ####
 tmp <- seu[,sample(colnames(seu),5000)]
 tmp <- tmp[,!(tmp$cell_type %in% c("doublets","Mono",
@@ -96,9 +84,7 @@ top10 <- m %>%
   ungroup()
 tmp <- seu[,sample(colnames(seu),3000)]
 DoHeatmap(tmp, features = top10$gene) + NoLegend()
-```
 
-```{r}
 # Figure 1F ####
 library(corrplot)
 library(dplyr)
@@ -114,4 +100,3 @@ corrplot(cor, tl.col = "black")
 corrplot(cor, method = "color",
          tl.col = "black", tl.srt = 45, 
          addCoef.col = "black", number.cex = 0.7)
-```
