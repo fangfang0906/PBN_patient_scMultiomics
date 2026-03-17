@@ -2,7 +2,7 @@ library(Seurat)
 library(monocle)
 library(RColorBrewer)
 
-#Extract data, phenotype data, and feature data from the SeuratObject
+# Extract data, phenotype data, and feature data from the SeuratObject
 cds <- readRDS("data/P3.cds")
 p1 <- plot_cell_trajectory(cds,color_by = "sample")+
   scale_color_manual(values=c("chocolate1","chocolate4","steelblue","steelblue4"))

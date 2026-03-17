@@ -1,5 +1,4 @@
 # Figure 1B ####
-setwd("/Users/fyan1/Downloads/Projects/Yang_PBN_patient_scRNAseq/")
 library(Seurat)
 library(tidyr)
 library(ggplot2)
@@ -7,7 +6,6 @@ library(Matrix)
 library(reticulate)
 library(parallel)
 library(dplyr)
-use_python('/Users/fyan1/Library/r-miniconda-arm64/envs/r-reticulate/bin/python')
 set.seed(1234)
 
 # load data ####

@@ -9,7 +9,6 @@ library(zoo)
 library(ggpubr)
 library(pheatmap)
 library(WebGestaltR)
-use_python('/Users/fyan1/Library/r-miniconda-arm64/envs/r-reticulate/bin/python')
 set.seed(1234)
 
 tmp <- readRDS("data/PT3_HSPC.rds")

@@ -9,4 +9,4 @@ In this study, we performed **single-cell multiome sequencing (scRNAseq, scATAC-
 To reproduce the analysis and figures presented in our manuscript please see the [Reproducibility](https://github.com/fangfang0906/PBN_patient_scMultiomics/tree/master/Reproducibility) folder.
 
 ## Data availability
-The single-cell RNA-seq, ATAC-seq and DNA-seq data generated in this study are being deposited in the [European Genome-Phenome Archive (EGA)](https://ega-archive.org/). An accession code will be provided upon release.
+The single-cell RNA-seq, ATAC-seq and DNA-seq data generated in this study will be provided by the corresponding author upon reasonable request, subject to institutional review board (IRB) approval and a completed data transfer agreement to protect patient privacy and confidentiality.
